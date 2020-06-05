@@ -48,4 +48,9 @@ public class AdminServiceImp implements AdminService
 		//adminRepository.delete(user);
 		adminDAO.delete(user);
 	}
+	@Transactional(value = TxType.REQUIRED)
+	public void update(TsscAdmin user) {
+		//adminRepository.delete(user);
+		adminDAO.update(user);
+	}
 }

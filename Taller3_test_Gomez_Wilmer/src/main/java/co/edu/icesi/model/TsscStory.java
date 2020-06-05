@@ -36,16 +36,17 @@ public class TsscStory implements Serializable {
 	@SequenceGenerator(name = "TSSC_STORY_ID_GENERATOR", allocationSize = 1, sequenceName = "TSSC_STORY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TSSC_STORY_ID_GENERATOR")
 	private long id;
-	@NotBlank
+	//@NotBlank
 	@Column(name = "ALT_DESC_SHOWN")
 	private String altDescShown;
-	@NotBlank
+	
 	@Column(name = "ALT_DESCRIPTON")
-	private String altDescripton;
+	//@NotBlank
+	private String altDescription;
 	@Positive
 	@Column(name = "BUSINESS_VALUE")
 	private BigDecimal businessValue;
-	@NotNull
+	@NotBlank
 	private String description;
 	@Positive
 	@Column(name = "INITIAL_SPRINT")
@@ -102,12 +103,12 @@ public class TsscStory implements Serializable {
 		this.altDescShown = altDescShown;
 	}
 
-	public String getAltDescripton() {
-		return this.altDescripton;
+	public String getAltDescription() {
+		return this.altDescription;
 	}
 
 	public void setAltDescripton(String altDescripton) {
-		this.altDescripton = altDescripton;
+		this.altDescription = altDescripton;
 	}
 
 	public BigDecimal getBusinessValue() {

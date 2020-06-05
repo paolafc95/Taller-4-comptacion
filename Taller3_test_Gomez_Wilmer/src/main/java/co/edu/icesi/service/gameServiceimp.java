@@ -193,19 +193,20 @@ public class gameServiceimp implements gameService{
 	}
 	
 	
-	@Transactional(value = TxType.SUPPORTS)
+	@Transactional(value = TxType.REQUIRED)
 	public Iterable<TsscStory> findStories(long id) {
 		// TODO Auto-generated method stub
 		//return getGame(id).get().getTsscStories();
 		return getGame(id).getTsscStories();
 	}
 	
-	@Transactional(value = TxType.SUPPORTS)
+	@Transactional(value = TxType.REQUIRED)
 	public Iterable<TsscTimecontrol> findCrono(long id) {
 		// TODO Auto-generated method stub
 		
 		return getGame(id).getTsscTimecontrols();
 	}
+	@Transactional(value = TxType.REQUIRED)
 	public void update(TsscGame game) {
 		// TODO Auto-generated method stub
 		gameDAO.update(game);

@@ -16,9 +16,7 @@
 <link rel="stylesheet" href="../css/shards.min.css">
 </head>
 <body>
-
-
-	<div th:switch="${cronogramas}" class="container my-5">
+	<div th:switch="${cronogramas}" class="container my-5" th:object="${game}">
 	<h2 class="mb-5">Gestión de Cronogramas de juegos</h2>
 		<div class="row">
 			<div class="col-md-10">
@@ -40,23 +38,20 @@
 						</thead>
 						<tbody>
 							<tr th:each="crono : ${cronogramas}">
-								<td><a th:href="@{/Games/edit/{id}(id=${crono.id})}" ></a></td>
-								<!-- <td><a th:href="@{/Games/del/{id}(id=${crono.id})}"></a></td> -->
-							
 								<td th:text="${crono.id}"></td>
 								<td th:text="${crono.name}"></td>
 								<td th:text="${crono.tssccrono}"></td>
 								<td th:text="${crono.type}"></td>
 								<td th:text="${crono.tssctopic}"></td>
 								<td th:text="${crono.state}"></td>
-								<td><a th:href="@{Games/edit/{id}(id=${crono.id})}" class="btn btn-primary" class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
-								<td><a th:href="@{Games/edit/{id}(id=${crono.id})}" class="btn btn-primary"> <i class="fas fa-times ml-2"></i></a></td>
+								<td><a th:href="@{Games/__${game.id}__/crono/edit/{id}(id=${crono.id})}" class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
+								<td><a th:href="@{Games/__${game.id}__/crono/del/{id}(id=${crono.id})}" class="btn btn-primary"> <i class="fas fa-times ml-2"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
 					
 					<div >						
-						<a href="/Games/add/" div class="col-md-5 mt-3">
+						<a th:href="@{/Games/__${game.id}__/crono/add}" div class="col-md-5 mt-3">
 						<button class="btn btn-primary"> Adicionar <i class="far fa-calendar-alt"></i></button>
 						</p>
 					</div>
