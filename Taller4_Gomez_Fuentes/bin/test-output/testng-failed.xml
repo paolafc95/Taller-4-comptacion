@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="co.edu.icesi.JuegosTest">
+        <methods>
+          <include name="testSaveGameGroupsZero"/>
+          <include name="testEditGameGroupsZero"/>
+          <include name="testSaveGame2TopicNull"/>
+          <include name="initMocks"/>
+          <include name="testSaveGame2SameStories"/>
+          <include name="testSaveGameNull"/>
+          <include name="testSaveGame2TopicExist"/>
+          <include name="testSaveGameExist"/>
+          <include name="testSaveGameSpringZero"/>
+          <include name="testEditGameNull"/>
+          <include name="setUpGame2"/>
+          <include name="testSaveGame2SameTimeControl"/>
+          <include name="testSaveGameTemaNotNull"/>
+          <include name="testEditGameSpringZero"/>
+        </methods>
+      </class> <!-- co.edu.icesi.JuegosTest -->
+      <class name="co.icesi.edu.Integration.storyTest">
+        <methods>
+          <include name="testEditStory"/>
+          <include name="setUp"/>
+          <include name="testSaveStory"/>
+        </methods>
+      </class> <!-- co.icesi.edu.Integration.storyTest -->
+      <class name="co.icesi.edu.Integration.JuegosTest">
+        <methods>
+          <include name="testSaveGame2SameTimeControl"/>
+          <include name="testSaveGameTemaNotNull"/>
+          <include name="setUpGame2"/>
+          <include name="testSaveGame2SameStories"/>
+          <include name="testSaveGame2TopicExist"/>
+        </methods>
+      </class> <!-- co.icesi.edu.Integration.JuegosTest -->
+      <class name="co.edu.icesi.storyTest">
+        <methods>
+          <include name="testSaveStoryExist"/>
+          <include name="testSaveStoryGameNotExist"/>
+          <include name="testEditStorySprintInitZero"/>
+          <include name="testEditStoryValueBusinessZero"/>
+          <include name="testSaveStoryNull"/>
+          <include name="testSaveStorySprintInitZero"/>
+          <include name="testSaveStoryValueBusinessZero"/>
+          <include name="testEditStory"/>
+          <include name="testsaveStoryPriorityZero"/>
+          <include name="testEditStoryPriorityZero"/>
+          <include name="testEditStoryGameNotExist"/>
+          <include name="setUp"/>
+          <include name="testSaveStory"/>
+          <include name="initMocks"/>
+        </methods>
+      </class> <!-- co.edu.icesi.storyTest -->
+      <class name="co.edu.icesi.TemaTest">
+        <methods>
+          <include name="testSaveTemaSpringZero"/>
+          <include name="testSaveTemaGroupsZero"/>
+          <include name="initMocks"/>
+          <include name="testEditTemaGroupsZero"/>
+          <include name="testSaveTemaNull"/>
+          <include name="testEditTemaNull"/>
+          <include name="setUp"/>
+          <include name="testEditTema"/>
+          <include name="testEditTemaSpringZero"/>
+          <include name="testSaveTema"/>
+        </methods>
+      </class> <!-- co.edu.icesi.TemaTest -->
+      <class name="co.icesi.edu.Integration.TemaTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="testSaveTema"/>
+          <include name="testEditTema"/>
+        </methods>
+      </class> <!-- co.icesi.edu.Integration.TemaTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

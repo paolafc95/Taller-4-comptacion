@@ -11,7 +11,6 @@ import javax.persistence.Query;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import co.edu.icesi.model.TsscAdmin;
 import co.edu.icesi.model.TsscGame;
 import co.edu.icesi.model.TsscTimecontrol;
 import co.edu.icesi.model.TsscTopic;

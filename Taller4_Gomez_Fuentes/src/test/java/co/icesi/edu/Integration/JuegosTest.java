@@ -1,16 +1,13 @@
 package co.icesi.edu.Integration;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.BeforeTest;
@@ -24,13 +21,9 @@ import co.edu.icesi.model.TsscSprint;
 import co.edu.icesi.model.TsscStory;
 import co.edu.icesi.model.TsscTimecontrol;
 import co.edu.icesi.model.TsscTopic;
-import co.edu.icesi.repository.gameRepository;
-import co.edu.icesi.repository.sprintRepository;
 import co.edu.icesi.repository.storyRepository;
 import co.edu.icesi.repository.timeCRepository;
-import co.edu.icesi.repository.topicRepository;
 import co.edu.icesi.service.gameServiceimp;
-import co.edu.icesi.service.topicServiceimp;
 
 @SpringBootTest
 public class JuegosTest {
