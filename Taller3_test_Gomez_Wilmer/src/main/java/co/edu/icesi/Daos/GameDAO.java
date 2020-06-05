@@ -37,7 +37,7 @@ public class GameDAO implements IGameDAO{
 	@Override
 	public void delete(TsscGame entity) {
 		// TODO Auto-generated method stub
-		entityManager.merge(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override

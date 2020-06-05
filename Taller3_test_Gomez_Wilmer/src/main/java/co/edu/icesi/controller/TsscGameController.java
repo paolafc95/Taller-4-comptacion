@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import co.edu.icesi.ci.validations.ValidacionesForm1;
 import co.edu.icesi.model.TsscGame;
 import co.edu.icesi.model.TsscStory;
+import co.edu.icesi.model.TsscTimecontrol;
 import co.edu.icesi.service.gameServiceimp;
 import co.edu.icesi.service.storyServiceimp;
+import co.edu.icesi.service.timeServiceimp;
 import co.edu.icesi.service.topicServiceimp;
 
 @Controller
@@ -29,12 +31,14 @@ public class TsscGameController {
 	private gameServiceimp serviceimp;
 	private storyServiceimp serS;
 	private topicServiceimp top;
+	private timeServiceimp tim;
 	
 	@Autowired
-	public TsscGameController(gameServiceimp gameServiceimp,storyServiceimp st,topicServiceimp to) {
+	public TsscGameController(gameServiceimp gameServiceimp,storyServiceimp st,topicServiceimp to,timeServiceimp ti) {
 		this.serviceimp = gameServiceimp;
 		this.serS=st;
 		this.top=to;
+		this.tim=ti;
 	}
 	
 	@GetMapping("/Games/")
@@ -57,9 +61,10 @@ public class TsscGameController {
 	}
 	
 	//cronograma
-	@GetMapping("/Games/Cronograma/{id}")
+	@GetMapping("/Games/{id}/Cronograma")
 	public String timeControl(Model model, @PathVariable("id") long id) {
 		//model.addAttribute("Games", serviceimp.findAll());
+		model.addAttribute("game",serviceimp.getGame(id));
 		model.addAttribute("cronogramas", serviceimp.findCrono(id));
 		return "Games/Cronograma";
 	}	
@@ -146,7 +151,37 @@ public class TsscGameController {
 		model.addAttribute("game",serviceimp.getGame(id));
 		return "Games/Story";
 	}
-	
+	@GetMapping("/Games/{id}/Stories/select")
+	public String selectStories(Model model, @PathVariable("id") long id) {
+		
+		model.addAttribute("stories",serS.findAll());
+		model.addAttribute("game",serviceimp.getGame(id));
+		return "Games/SelectStory";
+	}
+	@PostMapping("/Games/{idg}/Stories/Select/{id}")
+	public String SelectStory(
+			@PathVariable("id") long id,@PathVariable("idg") long idG, @RequestParam(value = "action", required = true) String action,Model model) {
+		if (action != null && !action.equals("Cancel")) {
+				//game.setPassword(serviceimp.getGame(id).get().getPassword());
+				model.addAttribute("story",serS.getStory(id));
+				model.addAttribute("game",serviceimp.getGame(idG));
+				//model.addAttribute("genders", userService.getGenders());
+				//model.addAttribute("types", userService.getTypes());
+			//user.setPassword(userService.findById(id).get().getPassword());
+			try {
+				TsscGame game=serviceimp.getGame(idG);
+				TsscStory story = serS.getStory(id);
+				game.getTsscStories().add(story);
+				story.setTsscGame(game);
+				serviceimp.update(game);
+				serS.update(story);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "redirect:/Games/"+idG+"/Stories";
+	}
 	@GetMapping("/Games/{idG}/Stories/edit/{id}")
 	public String showUpdateStory(@PathVariable("id") long idS,@PathVariable("idG") long idG, Model model) {
 		List<TsscStory> stories = serviceimp.getGame(idG).getTsscStories();
@@ -168,9 +203,7 @@ public class TsscGameController {
 	@PostMapping("/Games/{idg}/Stories/edit/{id}")
 	public String updateApp(@Validated @ModelAttribute TsscStory story, BindingResult bindingResult,
 			@PathVariable("id") long id,@PathVariable("idg") long idG, @RequestParam(value = "action", required = true) String action,Model model) {
-		if(bindingResult.hasErrors()) {
-			return "Games/update-story";
-		}
+		
 		if (action != null && !action.equals("Cancel")) {
 			if(bindingResult.hasErrors()) {
 				//game.setPassword(serviceimp.getGame(id).get().getPassword());
@@ -212,7 +245,7 @@ public class TsscGameController {
 				
 				model.addAttribute("story",story);
 				model.addAttribute("game",serviceimp.getGame(id));
-				return "Games/addStoryG";
+				return "Games/"+id+"/addStoryG";
 			}
 			try {
 				
@@ -243,5 +276,100 @@ public class TsscGameController {
 		serviceimp.update(f);
 		
 		return "redirect:/Games/"+id+"/Stories";
+	}
+	@GetMapping("/Games/{idG}/crono/edit/{id}")
+	public String showUpdateTime(@PathVariable("id") long idS,@PathVariable("idG") long idG, Model model) {
+		List<TsscTimecontrol> stories = serviceimp.getGame(idG).getTsscTimecontrols();
+		int tam=stories.size();
+		TsscTimecontrol tempSt=null;
+		for (int i = 0; i < tam; i++) {
+			if(stories.get(i).getId()==idS) {
+				tempSt=stories.get(i);
+			}
+		}
+		if (tempSt == null)
+			throw new IllegalArgumentException("Invalid appointment Id:" + idG);
+		model.addAttribute("crono", tempSt);
+		model.addAttribute("game",serviceimp.getGame(idG));
+		
+		return "Games/update-crono";
+	}
+
+	@PostMapping("/Games/{idg}/crono/edit/{id}")
+	public String updateTime(@Validated @ModelAttribute TsscTimecontrol crono, BindingResult bindingResult,
+			@PathVariable("id") long id,@PathVariable("idg") long idG, @RequestParam(value = "action", required = true) String action,Model model) {
+		
+		if (action != null && !action.equals("Cancel")) {
+			if(bindingResult.hasErrors()) {
+				//game.setPassword(serviceimp.getGame(id).get().getPassword());
+				model.addAttribute("crono",crono);
+				model.addAttribute("game",serviceimp.getGame(idG));
+				//model.addAttribute("genders", userService.getGenders());
+				//model.addAttribute("types", userService.getTypes());
+				return "Games/update-crono";
+			}
+			//user.setPassword(userService.findById(id).get().getPassword());
+			try {
+				TsscGame game = serviceimp.getGame(idG);
+				
+				tim.update(crono);
+				serviceimp.update(game);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "redirect:/Games/"+idG+"/Cronograma";
+	}
+	@GetMapping("/Games/{id}/crono/add")
+	public String addtime(@PathVariable("id") long id,
+		Model model,  @ModelAttribute TsscGame Game) {
+		model.addAttribute("crono", new TsscTimecontrol());
+
+		
+		model.addAttribute("game",Game);
+		return "Games/addCrono";
+	}
+
+	@PostMapping("/Games/{id}/crono/add")
+	public String saveCrono(@PathVariable("id") long id,@Validated @ModelAttribute TsscTimecontrol story, BindingResult bindingResult,
+			@RequestParam(value = "action", required = true) String action,Model model) {
+		TsscGame game =serviceimp.getGame(id);
+		if (!action.equals("Cancel")) {
+			if(bindingResult.hasErrors()) {
+				
+				model.addAttribute("crono",story);
+				model.addAttribute("game",serviceimp.getGame(id));
+				return "/Games/addCrono";
+			}
+			try {
+				
+				
+					game.getTsscTimecontrols().add(story);
+					story.setTsscGame(game);
+					serviceimp.update(game);
+					tim.save(story);
+				
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("game",game);
+		model.addAttribute("crono",story);
+		return "redirect:/Games/"+id+"/Cronograma";
+	}
+	@GetMapping("/Games/{id}/crono/del/{ids}")
+	public String delTime(@PathVariable("id") long id,@PathVariable("ids") long ids,
+		Model model,  @ModelAttribute TsscGame Game) {
+		TsscGame f=serviceimp.getGame(id);
+		TsscTimecontrol s=tim.get(ids);
+		f.getTsscTimecontrols().remove(s);
+		s.setTsscGame(null);
+		tim.remove(s);	
+		serviceimp.update(f);
+		
+		return "redirect:/Games/"+id+"/Cronograma";
 	}
 }

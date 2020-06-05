@@ -32,7 +32,7 @@ public class TimeDAO implements ITimeDAO{
 	@Override
 	public void delete(TsscTimecontrol entity) {
 		// TODO Auto-generated method stub
-		entityManager.merge(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override

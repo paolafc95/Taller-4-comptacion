@@ -28,9 +28,9 @@
 							<tr>
 								<th>ID</th>								
 								<th>Nombre cronograma</th>
-								<th>Nombre de juego</th>
+								
 								<th>Tipo</th>
-								<th>Tema</th>
+								
 								<th>Estado</th>	
 								<th>Editar</th>
 								<th>Borrar</th>							
@@ -40,9 +40,9 @@
 							<tr th:each="crono : ${cronogramas}">
 								<td th:text="${crono.id}"></td>
 								<td th:text="${crono.name}"></td>
-								<td th:text="${crono.tssccrono}"></td>
+								
 								<td th:text="${crono.type}"></td>
-								<td th:text="${crono.tssctopic}"></td>
+								
 								<td th:text="${crono.state}"></td>
 								<td><a th:href="@{Games/__${game.id}__/crono/edit/{id}(id=${crono.id})}" class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
 								<td><a th:href="@{Games/__${game.id}__/crono/del/{id}(id=${crono.id})}" class="btn btn-primary"> <i class="fas fa-times ml-2"></i></a></td>

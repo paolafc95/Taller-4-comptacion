@@ -31,7 +31,7 @@ public class AdminDAO implements IAdminDAO {
 	@Override
 	public void delete(TsscAdmin entity) {
 		// TODO Auto-generated method stub
-		entityManager.merge(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override

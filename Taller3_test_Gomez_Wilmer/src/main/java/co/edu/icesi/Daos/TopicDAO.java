@@ -32,7 +32,7 @@ public class TopicDAO implements ITopicDAO {
 	@Override
 	public void delete(TsscTopic entity) {
 		// TODO Auto-generated method stub
-		entityManager.merge(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override

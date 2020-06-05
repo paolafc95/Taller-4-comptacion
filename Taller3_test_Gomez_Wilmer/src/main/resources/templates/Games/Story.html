@@ -43,19 +43,28 @@
 								<td class="text-info" th:text="${story.businessValue}"></td>
 								<td class="text-info" th:text="${story.initialSprint}"></td>
 								<td class="text-info" th:text="${story.shortDescription}"></td>
-								<td><a th:href="@{/Games/__${game.id}__/Stories/edit/{id}(id=${story.id})}"
+								<td><a
+									th:href="@{/Games/__${game.id}__/Stories/edit/{id}(id=${story.id})}"
 									class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
-								<td><a th:href="@{/Games/__${game.id}__/Stories/del/{id}(id=${story.id})}"
+								<td><a
+									th:href="@{/Games/__${game.id}__/Stories/del/{id}(id=${story.id})}"
 									class="btn btn-primary"><i class="fas fa-times ml-2"></i></a></td>
-								</tr>
+							</tr>
 						</tbody>
 					</table>
 				</div>
-				<a th:href="@{/Games/__${game.id}__/Stories/add}" div class="col-md-5 mt-3">
-					<button class="btn btn-primary">Adicionar <i class="fa fa-dice"></i></button>
-							<!-- <input type="submit" name="action" class="btn btn-primary">Actualizar <i class="fas fa-dice ml-2"></i>
+				<div>
+					<a th:href="@{/Games/__${game.id}__/Stories/add}" div
+						class="col-md-5 mt-3">
+						<button class="btn btn-primary">
+							Adicionar <i class="fa fa-dice"></i>
+						</button> <!-- <input type="submit" name="action" class="btn btn-primary">Actualizar <i class="fas fa-dice ml-2"></i>
+						</a> --> <a th:href="@{/Games/__${game.id}__/Stories/select}" div
+						class="col-md-5 mt-3">
+							<button class="btn btn-primary">
+								Asociar <i class="fa fa-dice"></i>
+							</button> <!-- <input type="submit" name="action" class="btn btn-primary">Actualizar <i class="fas fa-dice ml-2"></i>
 						</a> -->
-
 				</div>
 			</div>
 		</div>

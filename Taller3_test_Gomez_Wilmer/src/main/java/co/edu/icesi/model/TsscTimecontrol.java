@@ -16,6 +16,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -42,7 +43,7 @@ public class TsscTimecontrol implements Serializable {
 
 	@Column(name = "LAST_PLAY_TIME")
 	private LocalTime lastPlayTime;
-
+	@NotBlank
 	private String name;
 
 	@Column(name = "TC_ORDER")

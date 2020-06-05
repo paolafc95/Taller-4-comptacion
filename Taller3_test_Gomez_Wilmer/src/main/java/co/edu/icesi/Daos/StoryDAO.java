@@ -31,7 +31,7 @@ public class StoryDAO implements IStoryDAO {
 	@Override
 	public void delete(TsscStory entity) {
 		// TODO Auto-generated method stub
-		entityManager.merge(entity);
+		entityManager.remove(entity);
 	}
 
 	@Override
