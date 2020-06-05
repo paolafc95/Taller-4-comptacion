@@ -27,6 +27,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import co.edu.icesi.ci.validations.ValidacionesForm1;
 
@@ -34,6 +35,7 @@ import co.edu.icesi.ci.validations.ValidacionesForm1;
  * The persistent class for the TSSC_GAME database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "TSSC_GAME")
 @NamedQuery(name = "TsscGame.findAll", query = "SELECT t FROM TsscGame t")

@@ -16,11 +16,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the TSSC_SPRINT database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="TSSC_SPRINT")
 @NamedQuery(name="TsscSprint.findAll", query="SELECT t FROM TsscSprint t")

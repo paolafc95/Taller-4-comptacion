@@ -17,10 +17,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * The persistent class for the TSSC_TIMECONTROL database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "TSSC_TIMECONTROL")
 @NamedQuery(name = "TsscTimecontrol.findAll", query = "SELECT t FROM TsscTimecontrol t")

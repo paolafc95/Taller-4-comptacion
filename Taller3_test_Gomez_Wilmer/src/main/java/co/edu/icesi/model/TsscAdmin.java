@@ -17,10 +17,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * The persistent class for the TSSC_ADMIN database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "TSSC_ADMIN")
 @NamedQuery(name = "TsscAdmin.findAll", query = "SELECT t FROM TsscAdmin t")

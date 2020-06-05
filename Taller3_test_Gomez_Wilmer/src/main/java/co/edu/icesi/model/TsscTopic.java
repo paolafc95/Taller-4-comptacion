@@ -17,11 +17,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * The persistent class for the TSSC_TOPIC database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name = "TSSC_TOPIC")
 @NamedQuery(name = "TsscTopic.findAll", query = "SELECT t FROM TsscTopic t")
