@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Simulacion</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div th:switch="${apps}" class="container my-5">
+		<div class="row">
+			<div class="col-md-6">
+				<h2 th:case="null">Simulación Scrum - Universidad Icesi</h2>
+				<div sec:authorize="hasRole('superAdmin')">
+					<p><a href="/Games/"><i class="fas fa-dice ml-2"></i> Gestión de juegos</a></p>
+				</div>	
+				<div sec:authorize="hasRole('admin')">
+					<p><a href="/Topics/"><i class="fas fa-drum-steelpan ml-2"></i> Gestión de temas</a></p>
+				</div>
+				<div sec:authorize="hasRole('admin')">
+					<p><a href="/Stories/"><i class="fas fa-file-alt ml-2"></i> Gestión de historias</a></p>
+				</div>	
+				<div sec:authorize="hasRole('superAdmin')">
+					<p><a href="/"><i class="fas fa-user ml-2"></i> Gestión de administradores</a></p>
+				</div>	
+				<div sec:authorize="hasRole('admin')">
+					<p><a href="/Games/consultGame"><i class="fas fa-search"></i> Consulta de juegos</a></p>
+				</div>
+				<div sec:authorize="hasRole('admin')">
+					<p><a href="/Topics/consultTopic"><i class="fas fa-search"></i> Consulta de temas</a></p>
+				</div>		
+				
+				
+				<a href="javascript: document.logoutForm.submit()" role="menuitem"><i class="fas fa-chevron-left ml-2"></i>
+				Logout</a>
+
+			<form name="logoutForm" th:action="@{/logout}" method="post"
+				th:hidden="true">
+				<input hidden type="submit" value="Sign Out" />
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
